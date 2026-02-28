@@ -101,7 +101,7 @@ let currentPage = 'home';
         `;
         document.head.appendChild(style);
 
-        // Form submission handling
+        /* / Form submission handling
         document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -142,7 +142,7 @@ let currentPage = 'home';
             }
         `;
         document.head.appendChild(fadeStyle);
-
+*/
 
 
 
@@ -161,3 +161,8 @@ function toggleMenu() {
         nav.classList.remove('active');
       });
     });
+
+
+
+
+

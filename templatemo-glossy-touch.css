@@ -839,7 +839,7 @@ button[type="submit"] {
   justify-content: center;
   align-items: center;
   gap: 25px;
-  background-color: #333;
+  background-color: transparent;
   padding: 15px 0;
 }
 
