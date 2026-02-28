@@ -867,7 +867,7 @@ button[type="submit"] {
   .nav-links {
     display: none; /* Hidden by default */
     flex-direction: column;
-    background-color: #333;
+    background-color: none;
     width: 100%;
   }
 
@@ -880,7 +880,7 @@ button[type="submit"] {
   /* The toggle button appears only on mobile */
   .menu-toggle {
     display: block;
-    background: #333;
+    background: none;
     color: white;
     font-size: 24px;
     border: none;
