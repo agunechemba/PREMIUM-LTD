@@ -45,7 +45,8 @@ body {
     position: relative;
 }
 
-body.menu-open {
+body.menu-open,
+body.lightbox-open {
     overflow: hidden;
 }
 
@@ -553,6 +554,7 @@ section {
     cursor: pointer;
     aspect-ratio: 1 / 1;
     background-color: #e0e0e0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .gallery-item img {
@@ -584,6 +586,11 @@ section {
 
 .gallery-item:hover::after {
     opacity: 1;
+}
+
+.gallery-item:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
 }
 
 /* ==================== WHY CHOOSE US ==================== */
@@ -961,6 +968,145 @@ section {
     color: #fff;
 }
 
+/* ==================== LIGHTBOX ==================== */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(1rem, 4vw, 2.5rem);
+    background-color: rgba(8, 44, 75, 0.95);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    touch-action: none;
+}
+
+.lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.lightbox-stage {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 10px;
+}
+
+.lightbox-img {
+    margin: auto; /* centers correctly even when larger than the stage */
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.12);
+    cursor: zoom-in;
+    user-select: none;
+    -webkit-user-drag: none;
+    animation: lightboxZoomIn 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes lightboxZoomIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+}
+
+/* Tapped-to-zoom state — renders at natural size, stage scrolls */
+.lightbox.is-zoomed .lightbox-img {
+    max-width: none;
+    max-height: none;
+    cursor: zoom-out;
+    border-radius: 0;
+}
+
+.lightbox.is-zoomed .lightbox-stage {
+    align-items: flex-start;
+}
+
+/* Buttons */
+.lightbox-close,
+.lightbox-nav {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background-color 0.25s ease, transform 0.2s ease;
+    z-index: 10;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: scale(1.08);
+}
+
+.lightbox-close {
+    top: max(1rem, env(safe-area-inset-top));
+    right: max(1rem, env(safe-area-inset-right));
+}
+
+.lightbox-nav {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lightbox-nav:hover {
+    transform: translateY(-50%) scale(1.08);
+}
+
+.lightbox-prev { left: clamp(0.5rem, 2vw, 1.5rem); }
+.lightbox-next { right: clamp(0.5rem, 2vw, 1.5rem); }
+
+/* Bold caption */
+.lightbox-caption {
+    flex-shrink: 0;
+    max-width: min(900px, 92vw);
+    margin-top: 1rem;
+    text-align: center;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 1vw + 0.7rem, 1.25rem);
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    line-height: 1.4;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-counter {
+    flex-shrink: 0;
+    margin-top: 0.6rem;
+    padding: 5px 14px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
 /* ==================== RESPONSIVE ==================== */
 
 /* ---- Tablet (≤1024px) ---- */
@@ -1122,6 +1268,20 @@ section {
         bottom: max(1rem, env(safe-area-inset-bottom));
         right: max(1rem, env(safe-area-inset-right));
     }
+
+    .lightbox {
+        padding: 3.5rem 0.75rem 1rem;
+    }
+
+    .lightbox-close,
+    .lightbox-nav {
+        width: 42px;
+        height: 42px;
+        font-size: 17px;
+    }
+
+    .lightbox-prev { left: 0.5rem; }
+    .lightbox-next { right: 0.5rem; }
 }
 
 /* ---- Small phones (≤480px) ---- */
@@ -1173,6 +1333,21 @@ section {
         height: 76px;
         font-size: 26px;
     }
+
+    .lightbox-nav {
+        top: auto;
+        bottom: max(1rem, env(safe-area-inset-bottom));
+        transform: none;
+    }
+
+    .lightbox-nav:hover { transform: scale(1.08); }
+
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+
+    .lightbox-counter {
+        margin-bottom: 3.5rem;
+    }
 }
 
 /* ---- Extra small (≤360px) ---- */
@@ -1206,7 +1381,8 @@ section {
     .hero-btn,
     .cta-section,
     .contact-form,
-    .menu-overlay {
+    .menu-overlay,
+    .lightbox {
         display: none !important;
     }
 

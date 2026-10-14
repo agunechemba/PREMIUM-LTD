@@ -77,9 +77,6 @@
         <nav class="main-navigation" id="mainNav" aria-label="Main navigation">
             <div class="mobile-nav-header">
                 <span>Menu</span>
-                <button type="button" class="mobile-menu-close" aria-label="Close menu">
-                    <i class="fas fa-times"></i>
-                </button>
             </div>
             <ul>
                 <li class="current-menu-item"><a href="#home">Home</a></li>
@@ -229,18 +226,42 @@
                 <h2>Recent Projects & Installations</h2>
             </div>
             <div class="gallery-grid">
-                <div class="gallery-item"><img src="https://i.ibb.co/23j9dxQT/31.png" alt="Project 1" loading="lazy"></div>
-                <div class="gallery-item"><img src="https://i.ibb.co/prJDTwgp/30.png" alt="Project 2" loading="lazy"></div>
-                <div class="gallery-item"><img src="https://i.ibb.co/35zkWL3S/29.png" alt="Project 3" loading="lazy"></div>
-                <div class="gallery-item"><img src="https://i.ibb.co/8nTVhw3L/28.png" alt="Project 4" loading="lazy"></div>
-                <div class="gallery-item"><img src="https://i.ibb.co/39Pq3F7q/27.png" alt="Project 5" loading="lazy"></div>
-                <div class="gallery-item"><img src="https://i.ibb.co/20NwfxYK/26.png" alt="Project 6" loading="lazy"></div>
-                <div class="gallery-item"><img src="https://i.ibb.co/CKgddg9Q/25.png" alt="Project 7" loading="lazy"></div>
-                <div class="gallery-item"><img src="https://i.ibb.co/mr4tz0gW/24.png" alt="Project 8" loading="lazy"></div>
-                <div class="gallery-item"><img src="https://i.ibb.co/s9pZhsnV/23.png" alt="Project 9" loading="lazy"></div>
-                <div class="gallery-item"><img src="https://i.ibb.co/mZ3d4h9/22.png" alt="Project 10" loading="lazy"></div>
-                <div class="gallery-item"><img src="https://i.ibb.co/JFMW9F2w/21.png" alt="Project 11" loading="lazy"></div>
-                <div class="gallery-item"><img src="https://i.ibb.co/xt3YZx7r/20.png" alt="Project 12" loading="lazy"></div>
+                <div class="gallery-item" data-caption="Frameless Glass Curtain Wall Installation">
+                    <img src="https://i.ibb.co/23j9dxQT/31.png" alt="Frameless Glass Curtain Wall Installation" loading="lazy">
+                </div>
+                <div class="gallery-item" data-caption="Aluminium Shopfront System">
+                    <img src="https://i.ibb.co/prJDTwgp/30.png" alt="Aluminium Shopfront System" loading="lazy">
+                </div>
+                <div class="gallery-item" data-caption="ACP Cladding Project">
+                    <img src="https://i.ibb.co/35zkWL3S/29.png" alt="ACP Cladding Project" loading="lazy">
+                </div>
+                <div class="gallery-item" data-caption="Glass Partition & Office Divider">
+                    <img src="https://i.ibb.co/8nTVhw3L/28.png" alt="Glass Partition and Office Divider" loading="lazy">
+                </div>
+                <div class="gallery-item" data-caption="Stainless Steel Hand Railing">
+                    <img src="https://i.ibb.co/39Pq3F7q/27.png" alt="Stainless Steel Hand Railing" loading="lazy">
+                </div>
+                <div class="gallery-item" data-caption="Frameless Glass Shower Cubicle">
+                    <img src="https://i.ibb.co/20NwfxYK/26.png" alt="Frameless Glass Shower Cubicle" loading="lazy">
+                </div>
+                <div class="gallery-item" data-caption="Automatic Sliding Door System">
+                    <img src="https://i.ibb.co/CKgddg9Q/25.png" alt="Automatic Sliding Door System" loading="lazy">
+                </div>
+                <div class="gallery-item" data-caption="Metal & Glass Roofing Installation">
+                    <img src="https://i.ibb.co/mr4tz0gW/24.png" alt="Metal and Glass Roofing Installation" loading="lazy">
+                </div>
+                <div class="gallery-item" data-caption="Spider Wall Glass Fitting">
+                    <img src="https://i.ibb.co/s9pZhsnV/23.png" alt="Spider Wall Glass Fitting" loading="lazy">
+                </div>
+                <div class="gallery-item" data-caption="Suspended Ceiling Installation">
+                    <img src="https://i.ibb.co/mZ3d4h9/22.png" alt="Suspended Ceiling Installation" loading="lazy">
+                </div>
+                <div class="gallery-item" data-caption="Bulletproof Window Installation">
+                    <img src="https://i.ibb.co/JFMW9F2w/21.png" alt="Bulletproof Window Installation" loading="lazy">
+                </div>
+                <div class="gallery-item" data-caption="Aluminium Windows & Doors Project">
+                    <img src="https://i.ibb.co/xt3YZx7r/20.png" alt="Aluminium Windows and Doors Project" loading="lazy">
+                </div>
             </div>
         </div>
     </section>
@@ -448,6 +469,27 @@
     <a href="https://wa.me/2348037825980" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
+        <button type="button" class="lightbox-close" aria-label="Close image viewer">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <button type="button" class="lightbox-nav lightbox-prev" aria-label="Previous image">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button type="button" class="lightbox-nav lightbox-next" aria-label="Next image">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="lightbox-stage" id="lightboxStage">
+            <img src="" alt="" class="lightbox-img" id="lightboxImg">
+        </div>
+
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
 
     <!-- Main Script -->
     <script src="script.js"></script>
